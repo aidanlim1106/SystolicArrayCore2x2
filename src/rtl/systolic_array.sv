@@ -8,23 +8,23 @@
 module systolic_array #(
     parameter DATA_WIDTH = 8
 )(
-    input logic clk,
-    input logic rst_n,
-    input logic clear00,
-    input logic clear01,
-    input logic clear01,
-    input logic clear11,
+    input clk,
+    input rst_n,
+    input clear00,
+    input clear01,
+    input clear10,
+    input clear11,
     // A row inputs
-    input logic signed [DATA_WIDTH-1:0] a_row0,
-    input logic signed [DATA_WIDTH-1:0] a_row1,
+    input signed [DATA_WIDTH-1:0] a_row0,
+    input signed [DATA_WIDTH-1:0] a_row1,
     // B row inputs
-    input logic signed [DATA_WIDTH-1:0] b_col0,
-    input logic signed [DATA_WIDTH-1:0] b_col1,
+    input signed [DATA_WIDTH-1:0] b_col0,
+    input signed [DATA_WIDTH-1:0] b_col1,
     // outputs
     output logic signed [2*DATA_WIDTH-1:0] c00,
     output logic signed [2*DATA_WIDTH-1:0] c01,
     output logic signed [2*DATA_WIDTH-1:0] c10,
-    output logic signed [2*DATA_WIDTH-1:0] c11,
+    output logic signed [2*DATA_WIDTH-1:0] c11
 );
 
     logic signed [DATA_WIDTH-1:0] a_pe00_to_pe01;

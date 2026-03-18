@@ -9,14 +9,14 @@ module memory #(
     parameter DEPTH = 8,
     parameter ADDR_WIDTH = $clog2(DEPTH)
 )(
-    input logic clk,
-    input logic rst_n,
-    input logic wr_en,
-    input logic [ADDR_WIDTH-1:0]        wr_addr,
-    input logic signed [DATA_WIDTH-1:0] wr_data,
-    input logic transpose_b_en,
-    output logic signed [DATA_WIDTH-1:0]  a00, a01, a10, a11,
-    output logic signed [DATA_WIDTH-1:0]  b00, b01, b10, b11
+    input clk,
+    input rst_n,
+    input wr_en,
+    input [ADDR_WIDTH-1:0] wr_addr,
+    input signed [DATA_WIDTH-1:0] wr_data,
+    input transpose_b_en,
+    output logic signed [DATA_WIDTH-1:0] a00, a01, a10, a11,
+    output logic signed [DATA_WIDTH-1:0] b00, b01, b10, b11
 );
 
     logic signed [DATA_WIDTH-1:0] mem [0:DEPTH-1];

@@ -8,11 +8,11 @@
 module processing_element #(
     parameter DATA_WIDTH = 8
 )(
-    input logic     clk,
-    input logic     rst_n,
-    input logic     clear,
-    input logic signed [DATA_WIDTH-1:0]  a_in,   // op_west
-    input logic signed [DATA_WIDTH-1:0]  b_in,   // op_north
+    input clk,
+    input rst_n,
+    input clear,
+    input signed [DATA_WIDTH-1:0]  a_in,   // op_west
+    input signed [DATA_WIDTH-1:0]  b_in,   // op_north
     output logic signed [DATA_WIDTH-1:0] a_out,  // forwarded_east
     output logic signed [DATA_WIDTH-1:0] b_out,  // forwarded_south
     output logic signed [2*DATA_WIDTH-1:0] c_out // accumulated result
