@@ -79,7 +79,7 @@ module mmu #(
         end
     end
 
-    assign busy = (state == S_BUSY);
+    assign busy = (state == S_BUSY); 
     assign done = (state == S_DONE);
 
     // feed operands

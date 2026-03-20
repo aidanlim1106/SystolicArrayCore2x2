@@ -1,0 +1,17 @@
+// UVM Testbench Compilation Order
+
+// 1. Agent / Components
+`include "../Testbench/agent/tpu_seq_item.sv"
+`include "../Testbench/agent/tpu_sequencer.sv"
+`include "../Testbench/agent/tpu_driver.sv"
+`include "../Testbench/agent/tpu_monitor.sv"
+`include "../Testbench/agent/tpu_agent.sv"
+
+// 2. Environment
+`include "../Testbench/env/tpu_scoreboard.sv"
+`include "../Testbench/env/tpu_env.sv"
+
+// 3. Sequences
+`include "../Testbench/sequences/tpu_base_seq.sv"
+`include "../Testbench/sequences/tpu_simple_seq.sv"
+`include "../Testbench/sequences/tpu_random_seq.sv"

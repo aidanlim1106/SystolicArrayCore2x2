@@ -1,0 +1,43 @@
+# UVM Makefile for TPU Core (Cadence Xcelium)
+
+# Default Test and Seed
+TESTNAME ?= tpu_random_test
+SEED     ?= random
+
+# Tools and Flags
+XRUN       = xrun
+UVM_FLAGS  = -uvm -uvmhome CDNS-1.2
+SV_FLAGS   = -sv -access +rwc -timescale 1ns/1ps
+COV_FLAGS  = -coverage all -covoverwrite
+
+# Targets
+.PHONY: all link compile sim clean gui
+
+all: clean link sim
+
+# 1. Run Python Linker to generate compile.f
+link:
+	@echo "Linking files..."
+	python3 link_files_uvm.py
+
+# 2. Run Simulation (Compiles and Simulates in one step with xrun)
+sim: link
+	@echo "Running UVM Simulation: $(TESTNAME)"
+	$(XRUN) -f compile.f \
+		$(UVM_FLAGS) \
+		$(SV_FLAGS) \
+		$(COV_FLAGS) \
+		+UVM_TESTNAME=$(TESTNAME) \
+		-svseed $(SEED) \
+		-l xrun_sim.log
+
+# 3. Open Waveforms (SimVision)
+gui:
+	simvision tpu_waves.vcd &
+
+# 4. Clean up simulation cache files
+clean:
+	@echo "Cleaning up..."
+	rm -rf xcelium.d xrun.history xrun.log waves.shm
+	rm -rf *.vcd *.log compile.f
+	rm -rf cov_work
